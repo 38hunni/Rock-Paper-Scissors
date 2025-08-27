@@ -3,44 +3,45 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Responsive Calculator</title>
+		<title>Rock Paper Scissors</title>
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<div class="container">
-			<div class="display-wrapper">
-				<input type="text" class="display" placeholder="0" />
-				<input type="text" class="display-result" />
-			</div>
+		<div class="game-wrapper">
+			<!-- Left: Player Choices -->
+			<aside class="choices-panel">
+				<h2>Choose Your Move</h2>
+				<div class="choices">
+					<button data-choice="rock">🪨</button>
+					<button data-choice="paper">📄</button>
+					<button data-choice="scissors">✂</button>
+				</div>
+			</aside>
 
-			<div class="buttons">
-				<button class="operator top" data-value="AC">AC</button>
-				<button class="operator top" data-value="DEL">DEL</button>
-				<button class="operator top" data-value="%">%</button>
-				<button class="operator primary" data-value="/">/</button>
+			<!-- Right: Results + Scoreboard -->
+			<main class="game-panel">
+				<header class="scoreboard">
+					<div>👤 Player: <span id="player-score">0</span></div>
+					<div>💻 Computer: <span id="computer-score">0</span></div>
+					<div>🔥 Streak: <span id="streak">0</span></div>
+				</header>
 
-				<button data-value="7">7</button>
-				<button data-value="8">8</button>
-				<button data-value="9">9</button>
-				<button class="operator primary" data-value="*">×</button>
+				<section class="result-box">
+					<h1 id="result-text">Make your move!</h1>
+					<p id="last-round"></p>
+				</section>
 
-				<button data-value="4">4</button>
-				<button data-value="5">5</button>
-				<button data-value="6">6</button>
-				<button class="operator primary" data-value="-">-</button>
+				<section class="controls">
+					<button id="reset">Reset</button>
+					<button id="theme-toggle">Toggle Theme</button>
+				</section>
 
-				<button data-value="1">1</button>
-				<button data-value="2">2</button>
-				<button data-value="3">3</button>
-				<button class="operator primary" data-value="+">+</button>
-
-				<button data-value="0">0</button>
-				<button data-value="00">00</button>
-				<button data-value=".">.</button>
-				<button class="operator primary" data-value="=">=</button>
-			</div>
+				<details class="history">
+					<summary>📜 Game History</summary>
+					<ul id="history-list"></ul>
+				</details>
+			</main>
 		</div>
-
 		<footer>
 			<p>© 2025 38_Hunni | All rights reserved</p>
 		</footer>

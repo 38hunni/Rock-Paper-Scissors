@@ -1,106 +1,153 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-:root {
-  --primary: rgb(0, 3, 0);
-  --secondary: rgb(106, 90, 249);
-  --accent: rgb(255, 157, 10);
-  --white: #fff;
-  --black: #000;
+  font-family: "Segoe UI", sans-serif;
 }
 
 body {
-  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0f, #1a1a2e);
+  color: #e0e0ff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* needed for footer placement */
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 60px; /* prevent footer overlap */
+}
+
+body.light {
+  background: linear-gradient(135deg, #e0f2fe, #ede9fe);
+  color: #1a1a2e;
+}
+
+/* Layout */
+.game-wrapper {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+  width: 900px;
+  max-width: 95%;
+}
+
+/* Left: choices */
+.choices-panel {
+  flex: 1;
+  background: linear-gradient(135deg, #111827, #1e1b4b);
+  padding: 30px;
+  text-align: center;
+  color: #93c5fd;
+}
+
+.choices-panel h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #8b5cf6;
+}
+
+.choices button {
+  display: block;
+  margin: 20px auto;
+  padding: 20px;
+  font-size: 2rem;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.choices button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
+}
+
+/* Right: game panel */
+.game-panel {
+  flex: 2;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center; /* centers calculator */
-  background: #e0e3eb;
-  margin: 0;
-  padding-bottom: 60px; /* prevent calculator from being hidden by footer */
+  justify-content: space-between;
 }
 
-
-/* Calculator Box */
-.container {
-  position: relative;
-  max-width: 300px;
-  width: 100%;
-  border-radius: 12px;
-  padding: 10px 20px 20px;
-  background: var(--black);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: #60a5fa;
 }
 
+/* Result Box */
+.result-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+}
 
-.display-wrapper {
+.result-box h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #8b5cf6;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
   margin-bottom: 15px;
 }
 
-.display, 
-.display-result {
-  width: 100%;
-  background: transparent;
-  color: var(--white);
+.controls button {
+  padding: 10px 20px;
+  border-radius: 8px;
   border: none;
-  outline: none;
-  text-align: right;
-  font-size: 1.2rem;
-  padding: 5px 10px;
-}
-
-.display::placeholder {
-  color: #aaa;
-}
-
-.display-result {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-/* Buttons Grid */
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-.buttons button {
-  padding: 18px;
-  border-radius: 12px;
-  border: none;
-  font-size: 1.2rem;
   cursor: pointer;
-  background: #222;
-  color: var(--white);
-  transition: 0.3s;
-  border-radius: 50%;
+  background: linear-gradient(135deg, #1e3a8a, #8b5cf6);
+  color: white;
+  transition: transform 0.2s;
 }
 
-.buttons button:hover {
-  background: #333;
+.controls button:hover {
   transform: scale(1.05);
 }
 
-.buttons button:active {
-  transform: scale(0.95);
+/* History */
+.history {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 10px;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
-.buttons .primary {
-  background-color: var(--accent);
-  color: var(--black);
+.history summary {
+  cursor: pointer;
   font-weight: bold;
+  color: #93c5fd;
 }
 
-.top {
-  background: #444;
+#history-list {
+  list-style: none;
+  margin-top: 10px;
 }
+
+#history-list li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
 /* Footer */
 footer {
   position: fixed;
@@ -109,84 +156,83 @@ footer {
   width: 100%;
   text-align: center;
   padding: 12px 10px;
-  background: var(--black);
-  color: var(--white);
+  background: #0a0a0f;
+  color: #ccc;
   font-size: 0.9rem;
-  border-top: 2px solid var(--secondary);
+  border-top: 2px solid #8b5cf6;
+  z-index: 50;
 }
-
 footer p {
   margin: 0;
-  color: #ccc;
-}
-footer p strong {
-  color: var(--secondary);
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 1440px) {
-  .container {
-    max-width: 380px;
-  }
-}
+/* ----------- RESPONSIVENESS ----------- */
 
-@media (max-width: 1024px) {
-  .container {
-    max-width: 340px;
+/* Small phones: 320px */
+@media (max-width: 320px) {
+  .game-wrapper {
+    flex-direction: column;
+    width: 95%;
   }
-}
-
-@media (max-width: 720px) {
-  .container {
-    max-width: 320px;
-  }
-  .buttons button {
+  .choices button {
     padding: 15px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .container {
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    max-width: 260px;
-    padding: 15px;
-  }
-  .buttons button {
-    padding: 12px;
-    font-size: 0.95rem;
-  }
-  .display-result {
     font-size: 1.5rem;
   }
-  footer {
-    font-size: 0.8rem;
-    padding: 12px 5px;
+  .result-box h1 {
+    font-size: 1.3rem;
   }
 }
 
-@media (max-width: 320px) {
-  .container {
-    max-width: 230px;
-    padding: 10px;
+/* Phones: 480px */
+@media (max-width: 480px) {
+  .game-wrapper {
+    flex-direction: column;
+    width: 95%;
   }
-  .buttons {
-    gap: 8px;
-  }
-  .buttons button {
-    padding: 10px;
-    font-size: 0.85rem;
-  }
-  .display, .display-result {
+  .scoreboard {
+    flex-direction: column;
+    gap: 10px;
     font-size: 1rem;
   }
-  footer {
-    font-size: 0.6rem;
-    padding: 8px 5px;
+  .controls {
+    flex-wrap: wrap;
+  }
+}
+
+/* Tablets: 640px */
+@media (max-width: 640px) {
+  .game-wrapper {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .choices-panel {
+    padding: 20px;
+  }
+  .result-box {
+    padding: 20px;
+  }
+}
+
+/* Small laptops: 720px */
+@media (max-width: 720px) {
+  .game-wrapper {
+    width: 95%;
+  }
+  .result-box h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablets & Desktops: 1024px */
+@media (max-width: 1024px) {
+  .game-wrapper {
+    width: 90%;
+  }
+}
+
+/* Large screens: 1440px */
+@media (min-width: 1440px) {
+  .game-wrapper {
+    width: 1100px;
   }
 }
